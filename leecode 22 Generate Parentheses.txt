@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> ss;
+        rec(n, 0, 0, "", ss);
+        return ss;
+    }
+    
+    void rec(int n, int left, int right, string s, vector<string>& ss) {
+        if(left < right) {
+            return;
+        }
+        if(left ==n && right == n) {
+            ss.push_back(s);
+            return;
+        }
+        if(left == n) {
+            rec(n, left, right + 1, s + ")", ss);
+            return;
+        }
+        rec(n, left + 1, right, s + "(", ss);
+        rec(n, left, right + 1, s + ")", ss);
+    }
+    
+};
